@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#06060a;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:40px}
+.diagram{width:1100px;padding:40px}
+h1{text-align:center;font-size:28px;font-weight:800;margin-bottom:8px;background:linear-gradient(135deg,#fff,#c7d2fe,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;color:#71717a;font-size:14px;margin-bottom:36px}
+.row{display:flex;gap:16px;justify-content:center;margin-bottom:20px}
+.box{border-radius:12px;padding:18px 22px;text-align:center;border:1px solid #23232a;flex:1;max-width:260px}
+.box h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.box p{font-size:12px;color:#71717a;line-height:1.4}
+.box code{font-size:10px;color:#71717a;background:#111;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px}
+.user{background:#0d0d12;border-color:#6366f1}
+.user h3{color:#818cf8}
+.server{background:#0d0d12;border-color:#22c55e}
+.server h3{color:#4ade80}
+.model{background:#0d0d12}
+.m1{border-color:#818cf8}.m1 h3{color:#818cf8}
+.m2{border-color:#4ade80}.m2 h3{color:#4ade80}
+.m3{border-color:#fbbf24}.m3 h3{color:#fbbf24}
+.m4{border-color:#f87171}.m4 h3{color:#f87171}
+.output{background:#0d0d12}
+.o1{border-color:#818cf8}.o1 h3{color:#818cf8}
+.o2{border-color:#4ade80}.o2 h3{color:#4ade80}
+.o3{border-color:#fbbf24}.o3 h3{color:#fbbf24}
+.o4{border-color:#f87171}.o4 h3{color:#f87171}
+.arrow{text-align:center;color:#71717a;font-size:20px;margin:8px 0}
+.label{text-align:center;color:#45454d;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.cloud{background:rgba(99,102,241,0.06);border:1px dashed rgba(99,102,241,0.2);border-radius:16px;padding:24px 20px 20px;margin-bottom:20px;position:relative}
+.cloud-label{position:absolute;top:-10px;left:20px;background:#06060a;padding:0 8px;color:#818cf8;font-size:11px;font-weight:600;letter-spacing:1px}
+</style></head><body>
+<div class="diagram">
+  <h1>CrisisDoc Architecture</h1>
+  <p class="sub">4 Gemini Models → 4 Output Modalities → 1 Interleaved Stream</p>
+
+  <div class="label">Input</div>
+  <div class="row">
+    <div class="box user"><h3>Browser</h3><p>Camera + Mic (Live Mode)<br>or Text + Photos (Upload Mode)</p><code>WebRTC · AudioWorklet · WebSocket</code></div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <div class="cloud">
+    <span class="cloud-label">Google Cloud Run</span>
+    <div class="row">
+      <div class="box server"><h3>FastAPI Backend</h3><p>WebSocket for live sessions<br>REST for upload mode<br>Async pipeline orchestration</p><code>FastAPI · uvicorn · asyncio</code></div>
+    </div>
+
+    <div class="arrow">↓</div>
+    <div class="label">Gemini Models (Google GenAI SDK)</div>
+
+    <div class="row">
+      <div class="box model m1"><h3>Phase 1: Investigate</h3><p>Real-time video + audio analysis</p><code>gemini-2.5-flash-native-audio</code></div>
+      <div class="box model m2"><h3>Phase 2: Report</h3><p>Interleaved text + image generation</p><code>gemini-2.5-flash-image</code></div>
+      <div class="box model m3"><h3>Phase 3a: Narrate</h3><p>TTS documentary voiceover</p><code>gemini-2.5-flash-preview-tts</code></div>
+      <div class="box model m4"><h3>Phase 3b: Reconstruct</h3><p>Incident video generation</p><code>veo-3.1-fast-generate-preview</code></div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+  <div class="label">Interleaved Output Stream</div>
+
+  <div class="row">
+    <div class="box output o1"><h3>📝 Text</h3><p>Storytelling narrative</p></div>
+    <div class="box output o2"><h3>🎨 Images</h3><p>Scene diagrams, damage visuals, timelines</p></div>
+    <div class="box output o3"><h3>🎙️ Audio</h3><p>Section-by-section narration</p></div>
+    <div class="box output o4"><h3>🎬 Video</h3><p>CCTV-style reconstruction</p></div>
+  </div>
+</div>
+</body></html>
