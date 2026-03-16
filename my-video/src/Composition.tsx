@@ -169,134 +169,135 @@ const ClosingScene = () => {
   );
 };
 
-// ===== MAIN COMPOSITION — 4 MINUTES =====
+// ===== MAIN COMPOSITION — ~3:55 =====
+// 18 scenes totaling 244s, 17 transitions of 15 frames = 8.5s
+// Actual duration: 244 - 8.5 = 235.5s ≈ 3:55
 const FPS = 30;
 const T = 15;
 
 export const MyComposition = () => {
   return (
     <TransitionSeries>
-      {/* 1. Problem (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 1. Problem (16s) */}
+      <TransitionSeries.Sequence durationInFrames={16 * FPS}>
         <TextScene label="The Problem" labelColor={DANGER}
           title="Incident reports take 3–4 hours to write"
           body="Workplace injuries cost businesses $170 billion per year in the US. Reports are often incomplete, inconsistent, and lack visual documentation. What if AI could turn a simple description into a complete multimedia documentary?" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 2. Hero (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 2. Hero (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <HeroScene />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 3. How it works (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 3. How it works (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <TextScene label="How It Works"
           title="Describe an incident → Get a multimedia documentary"
           body="Choose Live Investigation (point your camera, talk through the scene with Gemini Live responding in real-time) or Upload Mode (describe what happened, attach photos). CrisisDoc generates a complete narrated documentary with all four output modalities." />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 4. Landing page — deployed (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 4. Landing page — deployed (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <ScreenScene src="demo/10-deployed-landing.png" label="Live on Google Cloud Run"
           caption="crisisdoc-257873184224.us-central1.run.app — Two modes: Live camera investigation or upload photos" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 5. Form filled (8s) */}
-      <TransitionSeries.Sequence durationInFrames={8 * FPS}>
+      {/* 5. Form filled (12s) */}
+      <TransitionSeries.Sequence durationInFrames={12 * FPS}>
         <ScreenScene src="demo/02-form-filled.png" label="Step 1: Describe the Incident"
           caption="Select incident type, enter location, and describe what happened in detail" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 6. Generating (8s) */}
-      <TransitionSeries.Sequence durationInFrames={8 * FPS}>
+      {/* 6. Generating (10s) */}
+      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
         <ScreenScene src="demo/03-generating.png" label="Step 2: AI Processing"
           caption="4 Gemini models working in parallel — generating diagrams, narration, and video reconstruction" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 7. Report title + listen (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 7. Report title + listen (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <ScreenScene src="demo/05-report-title.png" label="The Output: Multimedia Documentary"
           caption="Storytelling narrative with 'Listen' buttons for TTS narration and 'Play Story' for full auto-narration" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={slide({ direction: "from-bottom" })} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 8. Modality 1: Text (8s) */}
-      <TransitionSeries.Sequence durationInFrames={8 * FPS}>
-        <ModalityDetail icon="📝" title="Text" desc="Engaging storytelling narrative — 'On a seemingly ordinary afternoon, the intersection became the scene of a critical vehicle collision...'" model="gemini-2.5-flash-image" color={ACCENT_LIGHT} />
+      {/* 8. Modality 1: Text (12s) */}
+      <TransitionSeries.Sequence durationInFrames={12 * FPS}>
+        <ModalityDetail icon="📝" title="Text Narrative" desc="Engaging storytelling — not a dry report. 'On a seemingly ordinary afternoon, the intersection of 5th Avenue and Main Street became the scene of a critical vehicle collision...'" model="gemini-2.5-flash-image · response_modalities=['TEXT', 'IMAGE']" color={ACCENT_LIGHT} />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 9. Modality 2: Images — scene diagram (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 9. Modality 2: Images — scene diagram (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <ScreenScene src="demo/06-scene-diagram.png" label="Modality: AI-Generated Images"
-          caption="Scene reconstruction diagram with vehicle positions, witness locations, debris field, and impact zones" />
+          caption="Scene reconstruction with vehicle positions, witness locations, debris field, skid marks, and impact point" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 10. Images — damage (8s) */}
-      <TransitionSeries.Sequence durationInFrames={8 * FPS}>
+      {/* 10. Images — damage (12s) */}
+      <TransitionSeries.Sequence durationInFrames={12 * FPS}>
         <ScreenScene src="demo/04-report-top.png" label="AI-Generated Damage Assessment"
           caption="Color-coded damage visualization showing impact severity on both vehicles" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 11. Images — timeline (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 11. Images — timeline (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <ScreenScene src="demo/08-timeline.png" label="AI-Generated Incident Timeline"
-          caption="Visual sequence of events — from traffic light change through collision to 911 call" />
+          caption="Visual sequence from traffic light change through collision to 911 call — all AI-generated" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 12. Modality 3: Audio (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
-        <ModalityDetail icon="🎙️" title="Audio Narration" desc="Every section has a 'Listen' button. Click 'Play Story' to auto-narrate the entire documentary with section-by-section scrolling. Documentary-style TTS voiceover." model="gemini-2.5-flash-preview-tts" color="#fbbf24" />
+      {/* 12. Modality 3: Audio (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
+        <ModalityDetail icon="🎙️" title="Audio Narration" desc="Every section has a 'Listen' button for TTS voiceover. 'Play Story' auto-narrates the entire documentary with synchronized section scrolling. Professional documentary tone." model="gemini-2.5-flash-preview-tts · Kore voice" color="#fbbf24" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 13. Modality 4: Video (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
-        <ScreenScene src="demo/06-scene-diagram.png" label="Modality: AI-Generated Video"
-          caption="Veo generates a CCTV-style incident reconstruction video — embedded directly in the report with auto-play" />
+      {/* 13. Modality 4: Video (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
+        <ModalityDetail icon="🎬" title="Video Reconstruction" desc="Veo generates a CCTV-style incident reconstruction video — complete with timestamp overlay and surveillance camera angle. Embedded directly in the report with auto-play." model="veo-3.1-fast-generate-preview · 4 seconds" color="#f87171" />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 14. Live mode explanation (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 14. Live mode (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <TextScene label="Live Investigation Mode"
           title="Real-time conversation with Gemini Live"
-          body="Point your camera at the scene. Talk through what happened. Gemini sees your video feed, hears your voice, and responds in real-time — asking follow-up questions, identifying hazards, and building the full picture before generating the documentary." />
+          body="Point your camera at the scene. Talk through what happened. Gemini sees your video feed, hears your voice, and responds in real-time with audio — asking follow-up questions, identifying hazards, and building the full picture before generating the documentary." />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 15. Architecture (12s) */}
-      <TransitionSeries.Sequence durationInFrames={12 * FPS}>
+      {/* 15. Architecture (16s) */}
+      <TransitionSeries.Sequence durationInFrames={16 * FPS}>
         <ArchScene />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 16. Tech stack (10s) */}
-      <TransitionSeries.Sequence durationInFrames={10 * FPS}>
+      {/* 16. Tech stack (14s) */}
+      <TransitionSeries.Sequence durationInFrames={14 * FPS}>
         <TextScene label="Tech Stack"
-          title="FastAPI + Google GenAI SDK + Cloud Run"
-          body="WebSocket backend for live sessions, REST for upload mode. Vanilla JS frontend with WebRTC for camera/mic and AudioWorklet for PCM audio capture. TTS and video generation run in parallel via asyncio. Deployed with source-based Cloud Run deploy. Infrastructure managed with Terraform." />
+          title="FastAPI · Google GenAI SDK · Cloud Run"
+          body="WebSocket backend for live sessions, REST for upload mode. Vanilla JS frontend with WebRTC for camera and AudioWorklet for PCM audio capture. TTS narration and Veo video generation run in parallel via asyncio.gather(). Source-deployed to Cloud Run. Infrastructure as code with Terraform." />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-      {/* 17. Deployment proof (8s) */}
-      <TransitionSeries.Sequence durationInFrames={8 * FPS}>
-        <ScreenScene src="demo/09-cloud-run-proof.png" label="Deployed on Google Cloud Run"
-          caption="Health check endpoint confirming live deployment — crisisdoc-257873184224.us-central1.run.app/api/health" />
-      </TransitionSeries.Sequence>
-      <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
-
-      {/* 18. Closing (12s) */}
+      {/* 17. Deployment proof (12s) */}
       <TransitionSeries.Sequence durationInFrames={12 * FPS}>
+        <ScreenScene src="demo/09-cloud-run-proof.png" label="Proof of Deployment — Google Cloud Run"
+          caption="Live health check: crisisdoc-257873184224.us-central1.run.app/api/health" />
+      </TransitionSeries.Sequence>
+      <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
+
+      {/* 18. Closing (16s) */}
+      <TransitionSeries.Sequence durationInFrames={16 * FPS}>
         <ClosingScene />
       </TransitionSeries.Sequence>
     </TransitionSeries>
